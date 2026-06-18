@@ -1,22 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { version } from 'os';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'phupa is noob!';
-  }
-
-  getName(): string{
-    return 'Tang';
-  }
-  getLove(): string{
-    return 'some one';
-}
-  getJson(): object {
+ 
+  getJson()  {
     return{
     name: 'arigato',
     surname:'koniciwa',
-    age : 67
+    age : 67,
+    version : process.env.API_VERSION,
     };
     }
     getJson2() {

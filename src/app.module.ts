@@ -5,9 +5,11 @@ import { ProductModule } from './product/product.module';
 import { UtilityModule } from './shared/utility/utility.module';
 import { GlobalHelperService } from './shared/global-helper/global-helper.service';
 import { GlobalHelperModule } from './shared/global-helper/global-helper.module';
+import { CustomerModule } from './customer/customer.module';
+import {ConfigModule} from '@nestjs/config';
 
 @Module({
-  imports: [ProductModule, UtilityModule, GlobalHelperModule],
+  imports: [ConfigModule.forRoot(), GlobalHelperModule, CustomerModule],
   controllers: [AppController],
   providers: [AppService, GlobalHelperService],
 })
