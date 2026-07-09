@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-// import { CustomerService } from './customer.service';
+ import { CustomerService } from './customer.service';
 import { PrismaService } from '../prisma.service';
 import { Customer } from '../generated/prisma/client';
 import { CreateCustomerDto } from '../generated/nestjs-dto/customer/dto/create-customer.dto';
@@ -30,13 +30,27 @@ export class CustomerController {
     });
   }
 
+  @Get('byemail/:email')
+  async findByEmail(@Param('email') email: string): Promise<Customer | null> {
+    return this.prismaService.customer.findUnique({
+      where: {
+        email: email
+      }
+    });
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
-    // return this.customerService.update(+id, updateCustomerDto);
+  update(@Param('id') id: string, @Body() updateBody: UpdateCustomerDto) {
+     return this.prismaService.customer.update({
+       where: { id: Number(id)},
+       data: updateBody
+     });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    // return this.customerService.remove(+id);
+     return this.prismaService.customer.delete({
+       where: { id: Number(id) }
+     });
   }
 }

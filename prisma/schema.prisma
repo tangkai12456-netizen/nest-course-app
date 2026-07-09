@@ -24,8 +24,8 @@ generator nestjsDto {
 
 datasource db {
   provider = "postgresql"
-  
 }
+
 model Customer {
   id        Int     @id @default(autoincrement())
   fullname  String

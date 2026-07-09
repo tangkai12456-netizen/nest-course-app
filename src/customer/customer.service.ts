@@ -4,8 +4,11 @@ import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Injectable()
 export class CustomerService {
-  create(createCustomerDto: CreateCustomerDto) {
-    return 'This action adds a new customer';
+  customerModel: any;
+  async create(createCustomerDto: CreateCustomerDto) {
+    return await this.customerModel.create(
+      createCustomerDto as Partial<CreateCustomerDto>,
+    );
   }
 
   findAll() {
